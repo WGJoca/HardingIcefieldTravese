@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=utf-8 />
+	<title>Harding Icefield Traverse</title>
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+
+<!--Original Style-->	
+<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background: "Black";
+			font-family: "Georgia", serif;
+			color: #ffffff;
+		}
+
+		h1 {
+			position: absolute;
+			margin-top: 0;
+			top: 10px;
+			left: 45px;
+			font-size: 2em;
+			font-family: "Futura", sans-serif;
+			color: rgb(253, 253, 253);
+			letter-spacing: .06em;
+			padding: 10px 15px;
+			background: solid rgb(256, 256, 256);
+			border-radius: 3px;
+			z-index: 800;
+		}
+
+		h2 {
+			font-family: "Futura", sans-serif;
+			letter-spacing: .04em;
+		}
+
+		#map {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+		}
+
+		section {
+			position: absolute;
+			bottom: 0;
+			left: 10px;
+			width: 280px;
+			margin: 20px auto;
+			padding: 0 15px;
+			background: black;
+			opacity: 1;
+			z-index: 800;
+		}
+
+		p {
+			font-size: .6em;
+			line-height: 1.5em;
+		}
+
+		a {
+			color: #005daa;
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+		
+	</style>
+
+	
+</head>
+
+<body>
+
+	<h1>Harding Icefield Traverse</h1>
+
+	<div id='map'></div>
+
+	<section>
+		<h2>A Brief History</h2>
+		<img src="img/IMG_5743.jpg" width="280" height="150">
+
+		<p>The centerpiece of Kenai Fjords National Park, the Harding Icefield,  is the largest icefield fully contained with in the boarders of the United States. It covers 700 sq miles and has 38 glaciers flowing from the main body. </p>
+		<p>The first known crossing of the Harding wasn't until 1940, when Eugene "Coho" Smith and Don Rising crossed the icefield from Bear Glacier to Tustumena Lake. However, they never told anyone of their crossing until they returned. It wasn't until 1968 that the first recorded crossing occured when ten people crossed the expanse from Homer to Seward in 8 days.</p>
+		<p>Now an astounding feat of mountaineering, people from all over the world cross the Harding to test their skills every year.</p>
+		<p>For more information about the Harding Icefield visit <a href="https://www.nps.gov/kefj/index.htm">Kenai Fjords National Park</a></p>
+		<p>Map authored by William G Joca</p>
+
+	</section>
+
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+
+    <script src="data/route.js"></script> <!--this line loads the route.js file-->
+
+	<script>
+
+//options to be used when creating the map
+		var options = {
+			center: [60.090881220192294, -150.09101427426376],
+			zoom: 10.3
+		}
+
+//creation of the Leaflet map
+		var map = L.map('map', options);
+
+//request to load basemap
+//var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+//	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+//}).addTo(map);
+
+//var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+//	maxZoom: 17,
+//	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+//}).addTo(map);
+
+//var CyclOSM = L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png', {
+//	maxZoom: 20,
+//	attribution: '<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+//}).addTo(map)
+
+		var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+			attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+		}).addTo(map)
+
+//string content to be inserted into a tooltip
+		var message = 'Beacon Heights!';
+
+//create a Leaflet marker, centered on the map's center.
+//		L.marker(map.getCenter())
+//			.bindTooltip(message) //bind the tooltip and message to the marker
+//			.addTo(map) // add the marker to the map`
+//			.openTooltip(); // open the tooltip
+
+		var myRoute = L.geoJson(data, {
+			filter : function(feature) {
+				if(feature.geometry.type =="LineString") {
+				return feature;
+				}
+			},
+		
+			style : function(feature) {
+				return {
+					color: "#005DAA",
+					weight: 3,
+					opacity: 0.5,
+					dashArray: "0, 0"
+				}
+			}
+		}).addTo(map);
+
+		var myStops = L.geoJson(data, {
+			filter : function(feature) {
+				if(feature.geometry.type == "Point") {
+				return feature;
+			}
+		},
+
+		onEachFeature : function(feature, layer) {
+			layer.bindTooltip(feature.properties["name"]);
+			}
+		}).addTo(map);
+
+
+	</script>
+
+</body>
+
+</html>

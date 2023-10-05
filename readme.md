@@ -1,0 +1,7 @@
+## Harding Icefield Traverse
+---
+The **Harding Icefield** is the largest icefield fully contained within the borders of the United States. Kenai Fjords National Park was established in 1980 through an act of Congress to protect the Harding Icefield. That act of congress called ANILCA, the Alaskan National Interest Land Conservation Act, set aside the 670,000-acre lot of land for conservation, as well as established or expanded the other National Parks in Alaska.
+
+The first recorded traverse of the Harding Icefield occurred in 1968 when a group of explorers covered an 8-day expanse between Homer and Seward. They entered the icefield via the *Tustumena Glacier* on the western side of the Kenai mountains and eventually ended their adventure by exiting what was then known as *Resurrection Glacier* (now known as *Exit Glacier* because of their feat). When they arrived in Seward they were greeted with much fanfare and excitement.
+
+The traverse follows in their footsteps from Homer to Seward across the icy expanse. Now seen as a massive feat in mountaineering, a handful of people attempt to cross the Harding every year. It requires a specific skill set that includes backcountry skiing, glacier travel, and crevasse rescue. The overall trip is 35 miles in total but is an achievement like no other!s
